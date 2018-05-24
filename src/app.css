@@ -25,6 +25,10 @@ body {
   padding: 10px;
 }
 
+.app-loader div {
+  margin: 40px auto;
+}
+
 .search-form {
   margin-top: 20px;
   text-align: center;
