@@ -1,13 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import Spinner from 'react-spinkit';
+
+import Loader from './Loader.jsx';
+import SearchResults from './SearchResults.jsx';
 
 const API_KEY = 'uFGpDz9081oqf07v01uIwUmkW0F3AZciUBoV20eJ0NtvDyIWCB';
 const API_URL = `https://api.tumblr.com/v2/tagged?api_key=${API_KEY}&tag=`;
-
-const Loader = () => (
-  <Spinner name="pulse" className="app-loader" color="white" />
-);
 
 export default class Search extends React.Component {
   state = {
@@ -31,27 +29,11 @@ export default class Search extends React.Component {
   };
 
   render() {
-    let results;
-
-    if (this.state.loading) {
-      results = <Loader />;
-    } else {
-      results = (
-        <div className="search-results">
-          {this.state.searchResults.map(result => (
-            <div className="search-resultWrapper" key={result.id}>
-              <div className="search-result">
-                <img
-                  src={result.photos[0].original_size.url}
-                  className="search-resultImg"
-                />
-                <p>{result.summary}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      );
-    }
+    const results = this.state.loading ? (
+      <Loader />
+    ) : (
+      <SearchResults searchResults={this.state.searchResults} />
+    );
 
     return (
       <div className="search">
