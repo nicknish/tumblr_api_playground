@@ -13,6 +13,7 @@ export default class Search extends React.Component {
 
   handleSubmitForm = e => {
     e.preventDefault();
+
     const searchValue = e.target.elements[0].value;
 
     axios.get(this.buildAPIQuery(searchValue)).then(resp => {
@@ -24,16 +25,29 @@ export default class Search extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmitForm}>
-          <input type="search" placeholder="Search posts" />
-        </form>
-        {this.state.searchResults.map(result => (
-          <div key={result.id}>
-            <img src={result.photos[0].original_size.url} />
-            <p>{result.summary}</p>
-          </div>
-        ))}
+      <div className="search">
+        <div className="search-form">
+          <form onSubmit={this.handleSubmitForm}>
+            <input
+              className="search-formInput"
+              type="search"
+              placeholder="Search posts"
+            />
+          </form>
+        </div>
+        <div className="search-results">
+          {this.state.searchResults.map(result => (
+            <div className="search-resultWrapper">
+              <div className="search-result" key={result.id}>
+                <img
+                  src={result.photos[0].original_size.url}
+                  className="search-resultImg"
+                />
+                <p>{result.summary}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
