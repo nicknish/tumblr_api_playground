@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 const API_KEY = 'uFGpDz9081oqf07v01uIwUmkW0F3AZciUBoV20eJ0NtvDyIWCB';
-const API_URL = `http://api.tumblr.com/v2/tagged?api_key=${API_KEY}&tag=`;
+const API_URL = `https://api.tumblr.com/v2/tagged?api_key=${API_KEY}&tag=`;
 
 export default class Search extends React.Component {
   state = {
